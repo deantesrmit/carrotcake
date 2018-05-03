@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layouts/default">
+
+<body>
+    <!-- Main page content container -->
+    <div id="page" layout:fragment="content">
+        <!-- Slideshow code from https://www.w3schools.com/howto/howto_js_slideshow.asp -->
+        <div class="slideshowBox">
+            <!-- Slideshow images entered within -->
+            <div class="slideshowSlide">
+                <img src="/images/roomType1.jpg" style="width:100%">
+                <div class="slideshowCaption">Gold Room</div>
+            </div>
+            <div class="slideshowSlide">
+                <img src="/images/roomType2.jpg" style="width:100%">
+                <div class="slideshowCaption">Platinum Room</div>
+            </div>
+            <div class="slideshowSlide">
+                <img src="/images/roomType3.jpg" style="width:100%">
+                <div class="slideshowCaption">Diamond Room</div>
+            </div>
+            <div class="slideshowSlide">
+                <img src="/images/roomType4.jpg" style="width:100%">
+                <div class="slideshowCaption">Californium Room</div>
+            </div>
+            <!-- Next and previous slide arrows -->
+            <a class="slideshowPrev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="slideshowNext" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+
+        <div class="slideshowTracker" style="text-align:center">
+            <span class="slideshowDot"></span>
+            <span class="slideshowDot"></span>
+            <span class="slideshowDot"></span>
+            <span class="slideshowDot"></span>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+    var slideIndex = 1;
+    showSlides(slideIndex);
+
+    // Next/previous controls
+    function plusSlides(n) {
+        showSlides(slideIndex += n);
+    }
+
+    // Thumbnail image controls
+    function currentSlide(n) {
+        showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("slideshowSlide");
+        var dots = document.getElementsByClassName("slideshowDot");
+        if (n > slides.length) {slideIndex = 1}
+        if (n < 1) {slideIndex = slides.length}
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex-1].style.display = "block";
+        dots[slideIndex-1].className += " active";
+    }
+</script>
