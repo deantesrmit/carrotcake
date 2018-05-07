@@ -1,29 +1,25 @@
+/*Nav Bar CSS*/
 #logo{
-	/*Nav Bar logo CSS*/
+
 	height:37px;
 	width:37px;
 	float:left;
 }
-
 nav{
-    /*Nav bar CSS*/
     position:sticky;
     top:0;
     z-index:1;
     background-color:white;
 }
 nav ul {
-	/*Nav bar CSS*/
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.3),
     inset 0 0 3px rgba(255, 255, 255, 0.1);
     text-align: right;
 }
 nav ul li {
-	/*Nav bar CSS*/
     display: inline-block;
 }
 nav ul li a {
-	/*Nav bar CSS*/
     padding: 10px; 
     color: black;
     font-size: 18px;
@@ -35,7 +31,8 @@ nav li:hover{
 	/* Nav bar color change on hover*/
 	background-color:#eaeae1;
 }
- 
+
+/*index.html CSS*/
 #Main{
 	/*Main Div for important things*/
     min-width: 100px;
@@ -44,8 +41,7 @@ nav li:hover{
 	background-color:white;
 	box-shadow:0 0 15px rgba(0,0,0,0.3);
 	/*background-image:url("design/hotel1.jpg")*/
-} 
-
+}
 #Second{
 	/*Secondary div for stuff and things*/
 	text-align:center;
@@ -56,15 +52,13 @@ nav li:hover{
 	background-color:white;
 	box-shadow:0 0 15px rgba(0,0,0,0.3);
 	/*background-image:url("design/hotel2.jpg")*/
-} 
-
+}
 .buttonContainer{
 	/*As per name, container for buttons*/
 	position:relative;
 	text-align:center;
 	top:500px;
 }
-
 .button {
 	/*button design and style*/
 	width: 215px; 
@@ -81,8 +75,6 @@ nav li:hover{
 	/*Button colour when hovered over*/
     background-color: #eaeae1;
 }
-
-/* HOME button alignment */
 #availableRooms{
 	/*Available Rooms Button*/
 	left:30%;
@@ -103,17 +95,20 @@ nav li:hover{
 	left:57%;
 }
 
+/*General use CSS*/
 .divHeading{
 	text-align:center;
 	padding:250px;
 }
 /* For aligning div blocks horizontally */
 .divInline{
+
     display: inline-block;
     border: 1px solid black;
-
 }
-
+textarea{
+    resize: none;
+}
 
 /* Slideshow code from https://www.w3schools.com/howto/howto_js_slideshow.asp -->*/
 * {box-sizing:border-box}
@@ -140,7 +135,6 @@ nav li:hover{
   transition: 0.6s ease;
   border-radius: 0 3px 3px 0;
 }
-
 /* Position the "next button" to the right */
 .slideshowNext {
   right: 0;

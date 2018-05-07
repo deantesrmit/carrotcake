@@ -33,10 +33,10 @@
                 </div>
                 <!-- Dots below slideshow track position -->
                 <div class="slideshowTracker" style="text-align:center">
-                    <span class="slideshowDot" onclick="currentSlide(0)"></span>
                     <span class="slideshowDot" onclick="currentSlide(1)"></span>
                     <span class="slideshowDot" onclick="currentSlide(2)"></span>
                     <span class="slideshowDot" onclick="currentSlide(3)"></span>
+                    <span class="slideshowDot" onclick="currentSlide(4)"></span>
                 </div>
             </div>
             <!-- "Find a room" form container -->
@@ -78,7 +78,7 @@
                             </div>
                             <br>
                             <div>
-                                <input type="submit" name="viewSubmit" value="Find Rooms">
+                                <input type="submit" class="btn btn-primary" name="viewSubmit" value="Find Rooms">
                             </div>
                         </form>
                     </div>
@@ -106,7 +106,7 @@
                 <div class="col-md-2 offset-md-2" th:text="${room.id}"></div>
                 <div class="col-md-2" th:text="${room.numRooms}"></div>
                 <div class="col-md-2" th:text="${room.roomType}"></div>
-                <div class="col-md-2"><button type="button" class="btn btn-primary">Book</button></div>
+                <div class="col-md-2"><a href="/booking" type="button" class="btn btn-primary">Book</a></div>
             </div>
         </div>
     </div>

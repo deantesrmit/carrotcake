@@ -17,4 +17,11 @@ public class HomeController {
         model.addAttribute("name", "test");
         return "rooms";
     }
+
+    @GetMapping("/booking")
+    public String booking(Model model) {
+        model.addAttribute("booking", roomRepository.findAll());
+        model.addAttribute("name", "test");
+        return "booking";
+    }
 }
