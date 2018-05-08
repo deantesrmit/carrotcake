@@ -103,6 +103,7 @@ nav li:hover{
 /* For aligning div blocks horizontally */
 .divInline{
     display: inline-block;
+    vertical-align: middle;
 }
 .inputDate::-webkit-inner-spin-button{
     -webkit-appearance: none;
