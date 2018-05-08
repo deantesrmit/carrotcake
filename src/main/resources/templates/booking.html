@@ -42,54 +42,52 @@
             </div>
             <!-- "Find a room" form container -->
             <div class="divInline">
-                <div class="row">
-                    <div class="col-md-4 offset-md-4">
-                        <form>
-                            <h2>Room Details</h2><br>
-                            <div>
-                                <div class="divInline">
-                                    Please enter requested start date:<br>
-                                    <input type="date" name="viewStart">
-                                </div>
-                                <div class="divInline">
-                                    Please enter requested end date:<br>
-                                    <input type="date" name="viewEnd"><br>
-                                </div>
+                <div>
+                    <form name="bookForm" method="post">
+                        <h2>Room Details</h2><br>
+                        <div>
+                            <div class="divInline">
+                                Please enter requested start date:<br>
+                                <input type="date" name="viewStart">
                             </div>
-                            <div>
-                                Adults:<br>
-                                <input type="number" name="viewAdults" title="adults" min="0">
+                            <div class="divInline">
+                                Please enter requested end date:<br>
+                                <input type="date" name="viewEnd" align="right"><br>
                             </div>
-                            <div>
-                                Children:<br>
-                                <input type="number" name="viewChildren" min="0">
-                            </div>
-                            <div>
-                                Name:<br>
-                                <input type="text" name="bookName">
-                            </div>
-                            <div>
-                                Address:<br>
-                                <input type="text" name="bookAddress">
-                            </div>
-                            <div>
-                                Email:<br>
-                                <input type="text" name="bookEmail">
-                            </div>
-                            <div>
-                                Phone No.:<br>
-                                <input type="text" name="bookPhone">
-                            </div>
-                            <div>
-                                Additional Info (Allergies, Requirements, etc):<br>
-                                <textarea type="text" name="bookAdditional" rows="5"></textarea>
-                            </div>
-                            <br>
-                            <div>
-                                <input type="submit" class="btn btn-primary" name="viewSubmit" value="Find Rooms">
-                            </div>
-                        </form>
-                    </div>
+                        </div>
+                        <div>
+                            Adults:<br>
+                            <input type="number" name="viewAdults" title="adults" min="0">
+                        </div>
+                        <div>
+                            Children:<br>
+                            <input type="number" name="viewChildren" min="0">
+                        </div>
+                        <div>
+                            Name:<br>
+                            <input type="text" name="bookName">
+                        </div>
+                        <div>
+                            Address:<br>
+                            <input type="text" name="bookAddress">
+                        </div>
+                        <div>
+                            Email:<br>
+                            <input type="text" name="bookEmail">
+                        </div>
+                        <div>
+                            Phone No.:<br>
+                            <input type="text" name="bookPhone">
+                        </div>
+                        <div>
+                            Additional Info (Allergies, Requirements, etc):<br>
+                            <textarea type="text" name="bookAdditional" rows="5"></textarea>
+                        </div>
+                        <br>
+                        <div>
+                            <input type="submit" class="btn btn-primary" name="viewSubmit" value="Find Rooms">
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -102,16 +100,17 @@
     var slideIndex = 1;
     showSlides(slideIndex);
 
-    // Next/previous controls
+    // Next/previous controls increment/decrement slide index
     function plusSlides(n) {
         showSlides(slideIndex += n);
     }
 
-    // Thumbnail image controls
+    // Dots will change slide index to specified number
     function currentSlide(n) {
         showSlides(slideIndex = n);
     }
 
+    //Function by which slides are changed
     function showSlides(n) {
         var i;
         var slides = document.getElementsByClassName("slideshowSlide");

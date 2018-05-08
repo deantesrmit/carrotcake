@@ -102,9 +102,7 @@ nav li:hover{
 }
 /* For aligning div blocks horizontally */
 .divInline{
-
     display: inline-block;
-    border: 1px solid black;
 }
 textarea{
     resize: none;
@@ -116,6 +114,7 @@ textarea{
 .slideshowBox {
     position: relative;
     margin: auto;
+    padding: 10px;
 }
 /* Hide the images by default */
 .slideshowSlide {

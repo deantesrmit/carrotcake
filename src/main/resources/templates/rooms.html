@@ -41,52 +41,50 @@
             </div>
             <!-- "Find a room" form container -->
             <div class="divInline">
-                <div class="row">
-                    <div class="col-md-4 offset-md-4">
-                        <form>
-                            <h2>Room Details</h2><br>
-                            <div>
-                                <div class="divInline">
-                                    Please enter requested start date:<br>
-                                    <input type="date" name="viewStart">
-                                </div>
-                                <div class="divInline">
-                                    Please enter requested end date:<br>
-                                    <input type="date" name="viewEnd"><br>
-                                </div>
+                <div>
+                    <form>
+                        <h2>Room Details</h2><br>
+                        <div>
+                            <div class="divInline">
+                                Please enter requested start date:<br>
+                                <input type="date" name="viewStart">
                             </div>
-                            <div>
-                                Adults:<br>
-                                <input type="number" name="viewAdults" min="0">
+                            <div class="divInline">
+                                Please enter requested end date:<br>
+                                <input type="date" name="viewEnd"><br>
                             </div>
-                            <div>
-                                Children:<br>
-                                <input type="number" name="viewChildren" min="0">
-                            </div>
-                            <div>
-                                Beds:<br>
-                                <input type="number" name="viewBeds" min="0">
-                            </div>
-                            <div>
-                                Room Type:<br>
-                                <select name="viewType">
-                                    <option value="gold">Gold</option>
-                                    <option value="platinum">Platinum</option>
-                                    <option value="diamond">Diamond</option>
-                                    <option value="californium">Californium</option>
-                                </select>
-                            </div>
-                            <br>
-                            <div>
-                                <input type="submit" class="btn btn-primary" name="viewSubmit" value="Find Rooms">
-                            </div>
-                        </form>
-                    </div>
+                        </div>
+                        <div>
+                            Adults:<br>
+                            <input type="number" name="viewAdults" min="0">
+                        </div>
+                        <div>
+                            Children:<br>
+                            <input type="number" name="viewChildren" min="0">
+                        </div>
+                        <div>
+                            Beds:<br>
+                            <input type="number" name="viewBeds" min="0">
+                        </div>
+                        <div>
+                            Room Type:<br>
+                            <select name="viewType">
+                                <option value="gold">Gold</option>
+                                <option value="platinum">Platinum</option>
+                                <option value="diamond">Diamond</option>
+                                <option value="californium">Californium</option>
+                            </select>
+                        </div>
+                        <br>
+                        <div>
+                            <input type="submit" class="btn btn-primary" name="viewSubmit" value="Find Rooms" onClick="roomSearch()">
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
 
-        <div>
+        <div id="roomResults">
             <h2 style="text-align:center; margin-top: 20px; margin-bottom:20px">Rooms Available:</h2>
             <div class="row">
                 <div class="col-md-2 offset-md-2">
@@ -119,16 +117,17 @@
     var slideIndex = 1;
     showSlides(slideIndex);
 
-    // Next/previous controls
+    // Next/previous controls increment/decrement slide index
     function plusSlides(n) {
         showSlides(slideIndex += n);
     }
 
-    // Thumbnail image controls
+    // Dots will change slide index to specified number
     function currentSlide(n) {
         showSlides(slideIndex = n);
     }
 
+    //Function by which slides are changed
     function showSlides(n) {
         var i;
         var slides = document.getElementsByClassName("slideshowSlide");
@@ -144,4 +143,27 @@
         slides[slideIndex-1].style.display = "block";
         dots[slideIndex-1].className += " active";
     }
+
+    //Will show rooms based on search parameters
+    function roomSearch() {
+        var input, filter, list, room, a, i;
+        input = document.getElementsByName("viewType");
+        var checkFlag;
+        checkFlag = document.getElementsByName("viewSubmit");
+        checkFlag.backgroundColor = "yellow";
+        filter = input.value();
+        list = document.getElementById("roomResults");
+        room = list.getElementsByClassName("row");
+        for (i = 0; i < room.length; i++) {
+            a = room[i].getElementsByClassName("row")[0];
+            if (a.text() == filter) {
+                room[i].style.display = "";
+            } else {
+                room[i].style.display = "none";
+            }
+        }
+        //Ensures the heading row is always visible
+        room[0].style.display = "";
+    }
+
 </script>
