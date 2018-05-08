@@ -103,6 +103,14 @@ nav li:hover{
 /* For aligning div blocks horizontally */
 .divInline{
     display: inline-block;
+    vertical-align: middle;
+}
+.inputDate::-webkit-inner-spin-button{
+    -webkit-appearance: none;
+    margin: 0;
+}
+.inputDate::-webkit-calendar-picker-indicator{
+    opacity: 1;
 }
 textarea{
     resize: none;
@@ -113,8 +121,7 @@ textarea{
 /* Slideshow container */
 .slideshowBox {
     position: relative;
-    margin: auto;
-    padding: 10px;
+    margin: 10px;
 }
 /* Hide the images by default */
 .slideshowSlide {
