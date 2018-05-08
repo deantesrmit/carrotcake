@@ -104,7 +104,9 @@
                 <div class="col-md-2 offset-md-2" th:text="${room.id}"></div>
                 <div class="col-md-2" th:text="${room.numRooms}"></div>
                 <div class="col-md-2" th:text="${room.roomType}"></div>
-                <div class="col-md-2"><a href="/booking" type="button" class="btn btn-primary">Book</a></div>
+                <div class="col-md-2">
+                    <a th:href="@{/booking/{id}(id=${room.id})}">Book</a>
+                </div>
             </div>
         </div>
     </div>

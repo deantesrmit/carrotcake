@@ -43,16 +43,16 @@
             <!-- "Find a room" form container -->
             <div class="divInline">
                 <div>
-                    <form name="bookForm" method="post">
+                    <form name="bookForm" method="post" th:action="@{/booking}" th:object="${booking}">
                         <h2>Room Details</h2><br>
                         <div>
                             <div class="divInline">
                                 Please enter requested start date:<br>
-                                <input type="date" name="viewStart">
+                                <input type="date" id="startDate" name="startDate" th:field="*{startDate}">
                             </div>
                             <div class="divInline">
                                 Please enter requested end date:<br>
-                                <input type="date" name="viewEnd" align="right"><br>
+                                <input type="date" id="endDate" name="endDate" align="right" th:field="*{endDate}"><br>
                             </div>
                         </div>
                         <div>
@@ -65,7 +65,7 @@
                         </div>
                         <div>
                             Name:<br>
-                            <input type="text" name="bookName">
+                            <input type="text" th:field="*{bookingName}">
                         </div>
                         <div>
                             Address:<br>
@@ -85,7 +85,7 @@
                         </div>
                         <br>
                         <div>
-                            <input type="submit" class="btn btn-primary" name="viewSubmit" value="Find Rooms">
+                            <input type="submit" class="btn btn-primary" name="viewSubmit" value="Book Room">
                         </div>
                     </form>
                 </div>
@@ -126,4 +126,7 @@
         slides[slideIndex-1].style.display = "block";
         dots[slideIndex-1].className += " active";
     }
+
+    document.getElementById('startDate').valueAsDate = new Date();
+    document.getElementById('endDate').valueAsDate = new Date();
 </script>
