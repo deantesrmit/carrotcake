@@ -28,13 +28,13 @@ public class BookingController {
     }
 
     @PostMapping("/booking")
-    public String greetingSubmit(@ModelAttribute Booking booking) {
+    public String greetingSubmit(@ModelAttribute Booking booking, Model model) {
 //        Booking booking = new Booking();
 //        booking.setRoomId(roomId);
 //        booking.setStartDate(LocalDate.now());
 //        booking.setEndDate(LocalDate.now().plusDays(3));
 //        bookingRepository.save(booking);
-        System.out.println(booking);
+         model.addAttribute("message", "Booking Saved!");
         return "booking";
     }
 }

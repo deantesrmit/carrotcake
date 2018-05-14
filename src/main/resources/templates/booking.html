@@ -42,10 +42,15 @@
                 </div>
             </div>
             <!-- "Find a room" form container -->
+
             <div class="divInline">
                 <div>
                     <form name="bookForm" method="post" th:action="@{/booking}" th:object="${booking}">
                         <h2>Room Details</h2><br>
+                        <div th:text="${message}" class="alert alert-success" role="alert">
+                            This is a success alert—check it out!
+                        </div>
+
                         <div>
                             <div class="divInline">
                                 Please enter requested start date:<br>
