@@ -4,43 +4,45 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorator="layouts/default">
 <body>
-    <!-- Main page content container -->
-    <div id="page" layout:fragment="content">
-        <div>
-            <div class="divInline">
-                <!-- Slideshow code from https://www.w3schools.com/howto/howto_js_slideshow.asp -->
-                <div class="slideshowBox">
-                    <!-- Slideshow images entered within -->
-                    <div class="slideshowSlide">
-                        <img src="/images/roomType1.jpg" style="width:100%">
-                        <div class="slideshowCaption">Gold Room</div>
-                    </div>
-                    <div class="slideshowSlide">
-                        <img src="/images/roomType2.jpg" style="width:100%">
-                        <div class="slideshowCaption">Platinum Room</div>
-                    </div>
-                    <div class="slideshowSlide">
-                        <img src="/images/roomType3.jpg" style="width:100%">
-                        <div class="slideshowCaption">Diamond Room</div>
-                    </div>
-                    <div class="slideshowSlide">
-                        <img src="/images/roomType4.jpg" style="width:100%">
-                        <div class="slideshowCaption">Californium Room</div>
-                    </div>
-                    <!-- Next and previous slide arrows -->
-                    <a class="slideshowPrev" onclick="plusSlides(-1)">&#10094;</a>
-                    <a class="slideshowNext" onclick="plusSlides(1)">&#10095;</a>
+<!-- Main page content container -->
+<div id="page" layout:fragment="content">
+    <div>
+        <div class="divInline">
+            <!-- Slideshow code from https://www.w3schools.com/howto/howto_js_slideshow.asp -->
+            <div class="slideshowBox">
+                <!-- Slideshow images entered within -->
+                <div class="slideshowSlide">
+                    <img src="/images/roomType1.jpg" style="width:100%">
+                    <div class="slideshowCaption">Gold Room</div>
                 </div>
-                <!-- Dots below slideshow track position -->
-                <div class="slideshowTracker" style="text-align:center">
-                    <span class="slideshowDot" onclick="currentSlide(1)"></span>
-                    <span class="slideshowDot" onclick="currentSlide(2)"></span>
-                    <span class="slideshowDot" onclick="currentSlide(3)"></span>
-                    <span class="slideshowDot" onclick="currentSlide(4)"></span>
+                <div class="slideshowSlide">
+                    <img src="/images/roomType2.jpg" style="width:100%">
+                    <div class="slideshowCaption">Platinum Room</div>
                 </div>
+                <div class="slideshowSlide">
+                    <img src="/images/roomType3.jpg" style="width:100%">
+                    <div class="slideshowCaption">Diamond Room</div>
+                </div>
+                <div class="slideshowSlide">
+                    <img src="/images/roomType4.jpg" style="width:100%">
+                    <div class="slideshowCaption">Californium Room</div>
+                </div>
+                <!-- Next and previous slide arrows -->
+                <a class="slideshowPrev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="slideshowNext" onclick="plusSlides(1)">&#10095;</a>
             </div>
-            <!-- "Find a room" form container -->
-            <div class="divInline">
+            <!-- Dots below slideshow track position -->
+            <div class="slideshowTracker" style="text-align:center">
+                <span class="slideshowDot" onclick="currentSlide(1)"></span>
+                <span class="slideshowDot" onclick="currentSlide(2)"></span>
+                <span class="slideshowDot" onclick="currentSlide(3)"></span>
+                <span class="slideshowDot" onclick="currentSlide(4)"></span>
+            </div>
+        </div>
+        <!-- "Find a room" form container -->
+        <div class="divInline">
+            <form name="bookForm" method="post" th:action="@{/searchRooms}" th:object="${searchRoomDto}">
+
                 <div>
                     <form>
                         <h2>Room Details</h2><br>
@@ -77,40 +79,34 @@
                         </div>
                         <br>
                         <div>
-                            <input type="submit" class="btn btn-primary" name="viewSubmit" value="Find Rooms" onClick="roomSearch()">
-                        </div>
+                        <input type="submit" class="btn btn-primary" name="viewSubmit" value="Find Rooms">
+
                     </form>
                 </div>
-            </div>
-        </div>
-
-        <div id="roomResults">
-            <h2 style="text-align:center; margin-top: 20px; margin-bottom:20px">Rooms Available:</h2>
-            <div class="row">
-                <div class="col-md-2 offset-md-2">
-                    Room number
-                </div>
-                <div class="col-md-2">
-                    Number of beds
-                </div>
-                <div class="col-md-2">
-                    Room Type
-                </div>
-                <div class="col-md-2">
-                    Book
-                </div>
-            </div>
-            <div class="row" th:each="room : ${rooms}">
-                <div class="col-md-2 offset-md-2" th:text="${room.id}"></div>
-                <div class="col-md-2" th:text="${room.numRooms}"></div>
-                <div class="col-md-2" th:text="${room.roomType}"></div>
-                <div class="col-md-2">
-                    <a th:href="@{/booking/{id}(id=${room.id})}">Book</a>
-                </div>
-            </div>
         </div>
     </div>
 
+    </form>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">Room #</th>
+            <th scope="col">Room type</th>
+            <th scope="col">Num beds</th>
+            <th scope="col">Book</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr th:each="room : ${rooms}">
+                <td th:text="${room.id}"></td>
+                <td th:text="${room.roomType}"></td>
+                <td th:text="${room.numRooms}"></td>
+                <td><a  class="btn btn-primary" th:href="@{/booking/{id}(id=${room.id})}">Book</a></td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>
 </body>
 
 </html>
@@ -134,38 +130,21 @@
         var i;
         var slides = document.getElementsByClassName("slideshowSlide");
         var dots = document.getElementsByClassName("slideshowDot");
-        if (n > slides.length) {slideIndex = 1}
-        if (n < 1) {slideIndex = slides.length}
+        if (n > slides.length) {
+            slideIndex = 1
+        }
+        if (n < 1) {
+            slideIndex = slides.length
+        }
         for (i = 0; i < slides.length; i++) {
             slides[i].style.display = "none";
         }
         for (i = 0; i < dots.length; i++) {
             dots[i].className = dots[i].className.replace(" active", "");
         }
-        slides[slideIndex-1].style.display = "block";
-        dots[slideIndex-1].className += " active";
+        slides[slideIndex - 1].style.display = "block";
+        dots[slideIndex - 1].className += " active";
     }
 
-    //Will show rooms based on search parameters
-    function roomSearch() {
-        var input, filter, list, room, a, i;
-        input = document.getElementsByName("viewType");
-        var checkFlag;
-        checkFlag = document.getElementsByName("viewSubmit");
-        checkFlag.backgroundColor = "yellow";
-        filter = input.value();
-        list = document.getElementById("roomResults");
-        room = list.getElementsByClassName("row");
-        for (i = 0; i < room.length; i++) {
-            a = room[i].getElementsByClassName("row")[0];
-            if (a.text() == filter) {
-                room[i].style.display = "";
-            } else {
-                room[i].style.display = "none";
-            }
-        }
-        //Ensures the heading row is always visible
-        room[0].style.display = "";
-    }
 
 </script>

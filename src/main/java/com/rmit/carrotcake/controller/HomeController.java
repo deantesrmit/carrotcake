@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.time.LocalDate;
 
@@ -20,6 +21,11 @@ public class HomeController {
 
     @GetMapping("/rooms")
     public String room(Model model) {
+        return "rooms";
+    }
+
+    @PostMapping("/searchRooms")
+    public String searchRoom(Model model) {
         model.addAttribute("rooms", roomRepository.findAll());
         model.addAttribute("name", "test");
         return "rooms";

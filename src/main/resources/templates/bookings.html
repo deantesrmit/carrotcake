@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layouts/default">
+
+<body>
+    <div layout:fragment="content" class="container">
+        <h2>My bookings</h2>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Room #</th>
+                <th scope="col">Room type</th>
+                <th scope="col">Num beds</th>
+                <th scope="col">Start Date</th>
+                <th scope="col">End Date</th>
+                <th scope="col">Feedback</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr th:each="booking : ${bookings}">
+                    <td th:text="${booking.room.id}"></td>
+                    <td th:text="${booking.room.roomType}"></td>
+                    <td th:text="${booking.room.numRooms}"></td>
+                    <td th:text="${booking.startDate}"></td>
+                    <td th:text="${booking.endDate}"></td>
+                    <td><a  class="btn btn-primary" th:href="@{/feedback/{id}(id=${booking.id})}">Leave Feedback</a></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</body>
+
+</html>
+

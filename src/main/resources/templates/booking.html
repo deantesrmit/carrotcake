@@ -46,10 +46,11 @@
             <div class="divInline">
                 <div>
                     <form name="bookForm" method="post" th:action="@{/booking}" th:object="${booking}">
-                        <h2>Room Details</h2><br>
+                        <h2 th:text="${message} ?  'Room Booked' : 'Book Room #' + ${roomId}"></h2><br>
                         <div th:text="${message}" class="alert alert-success" role="alert">
                             This is a success alert—check it out!
                         </div>
+                        <input type="hidden" th:field="*{room.id}">
 
                         <div>
                             <div class="divInline">

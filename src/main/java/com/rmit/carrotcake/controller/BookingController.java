@@ -1,6 +1,8 @@
 package com.rmit.carrotcake.controller;
 
 import com.rmit.carrotcake.domain.Booking;
+import com.rmit.carrotcake.domain.Feedback;
+import com.rmit.carrotcake.domain.Room;
 import com.rmit.carrotcake.repository.BookingRepository;
 import com.rmit.carrotcake.repository.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,18 +25,37 @@ public class BookingController {
     @GetMapping("/booking/{roomId}")
     public String booking(Model model, @PathVariable Long roomId) {
         model.addAttribute("roomId", roomId);
-        model.addAttribute("booking", new Booking());
+        Booking booking = new Booking();
+        Room room = new Room();
+        room.setId(roomId);
+        booking.setRoom(room);
+        model.addAttribute("booking", booking);
         return "booking";
     }
 
     @PostMapping("/booking")
     public String greetingSubmit(@ModelAttribute Booking booking, Model model) {
-//        Booking booking = new Booking();
-//        booking.setRoomId(roomId);
-//        booking.setStartDate(LocalDate.now());
-//        booking.setEndDate(LocalDate.now().plusDays(3));
-//        bookingRepository.save(booking);
-         model.addAttribute("message", "Booking Saved!");
+        bookingRepository.save(booking);
+        model.addAttribute("message", "Booking Saved!");
+        return "booking";
+    }
+
+    @GetMapping("/bookings")
+    public String bookings(Model model) {
+        model.addAttribute("bookings", bookingRepository.findAll());
+        return "bookings";
+    }
+
+    @GetMapping("/feedback/{bookingId}")
+    public String feedback(Model model, @PathVariable Long bookingId) {
+        model.addAttribute("feedback", new Feedback());
+        return "feedback";
+    }
+
+    @PostMapping("/feedback")
+    public String feedbackSubmit(@ModelAttribute Booking booking, Model model) {
+        bookingRepository.save(booking);
+        model.addAttribute("message", "Booking Saved!");
         return "booking";
     }
 }
