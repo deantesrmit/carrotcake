@@ -4,7 +4,9 @@ import com.rmit.carrotcake.domain.Booking;
 import com.rmit.carrotcake.domain.Feedback;
 import com.rmit.carrotcake.domain.Room;
 import com.rmit.carrotcake.repository.BookingRepository;
+import com.rmit.carrotcake.repository.FeedbackRepository;
 import com.rmit.carrotcake.repository.RoomRepository;
+import com.rmit.carrotcake.service.MailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +23,10 @@ public class BookingController {
     RoomRepository roomRepository;
     @Autowired
     BookingRepository bookingRepository;
+    @Autowired
+    MailService mailService;
+    @Autowired
+    FeedbackRepository feedbackRepository;
 
     @GetMapping("/booking/{roomId}")
     public String booking(Model model, @PathVariable Long roomId) {
@@ -34,9 +40,11 @@ public class BookingController {
     }
 
     @PostMapping("/booking")
-    public String greetingSubmit(@ModelAttribute Booking booking, Model model) {
+    public String saveBooking(@ModelAttribute Booking booking, Model model) {
         bookingRepository.save(booking);
         model.addAttribute("message", "Booking Saved!");
+        mailService.sendSimpleMessage(booking.getEmail(), "Thanks for booking",
+                "Thanks "  + booking.getBookingName()+ " for booking. Please enjoy your stay");
         return "booking";
     }
 
@@ -48,14 +56,17 @@ public class BookingController {
 
     @GetMapping("/feedback/{bookingId}")
     public String feedback(Model model, @PathVariable Long bookingId) {
-        model.addAttribute("feedback", new Feedback());
+        Feedback feedback = new Feedback();
+        Booking booking = new Booking();
+        booking.setId(bookingId);
+        feedback.setBooking(booking);
+        model.addAttribute("feedback", feedback);
         return "feedback";
     }
 
     @PostMapping("/feedback")
-    public String feedbackSubmit(@ModelAttribute Booking booking, Model model) {
-        bookingRepository.save(booking);
-        model.addAttribute("message", "Booking Saved!");
-        return "booking";
+    public String feedbackSubmit(@ModelAttribute Feedback feedback) {
+        feedbackRepository.save(feedback);
+        return "redirect:/bookings";
     }
 }

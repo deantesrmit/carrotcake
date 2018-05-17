@@ -16,6 +16,7 @@
                 <th scope="col">Num beds</th>
                 <th scope="col">Start Date</th>
                 <th scope="col">End Date</th>
+                <th scope="col">Num of people</th>
                 <th scope="col">Feedback</th>
             </tr>
             </thead>
@@ -26,7 +27,11 @@
                     <td th:text="${booking.room.numRooms}"></td>
                     <td th:text="${booking.startDate}"></td>
                     <td th:text="${booking.endDate}"></td>
-                    <td><a  class="btn btn-primary" th:href="@{/feedback/{id}(id=${booking.id})}">Leave Feedback</a></td>
+                    <td th:text="${booking.numOfPeople}"></td>
+                    <td>
+                        <div th:if="${booking.feedback != null}" th:text="${booking.feedback.text}"></div>
+                        <a th:if="${booking.feedback == null}" class="btn btn-primary" th:href="@{/feedback/{id}(id=${booking.id})}">Leave Feedback</a>
+                    </td>
                 </tr>
             </tbody>
         </table>

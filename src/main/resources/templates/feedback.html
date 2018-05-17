@@ -6,32 +6,20 @@
 
 <body>
     <div layout:fragment="content" class="container">
-        <h2>Leave feedback</h2>
+        <h2 style="text-align: center">Leave feedback</h2>
         <div class="container">
-            <div class="row">
-                <form role="form" id="contact-form" class="contact-form">
+                <form role="form" method="post" th:action="@{/feedback}" th:object="${feedback}">
+                    <input type="hidden" th:field="*{booking.id}">
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="offset-md-3 col-md-6">
                             <div class="form-group">
-                                <input type="text" class="form-control" name="Name" autocomplete="off" id="Name" placeholder="Name">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <input type="email" class="form-control" name="email" autocomplete="off" id="email" placeholder="E-mail">
+                                <textarea class="form-control textarea" rows="3" th:field="*{text}" placeholder="Message"></textarea>
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <textarea class="form-control textarea" rows="3" name="Message" id="Message" placeholder="Message"></textarea>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <button type="submit" class="btn main-btn pull-right">Save</button>
+                        <div class="offset-md-3 col-md-6">
+                            <button type="submit" class="btn btn-primary float-right">Save</button>
                         </div>
                     </div>
                 </form>

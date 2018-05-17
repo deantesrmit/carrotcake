@@ -16,6 +16,9 @@ CREATE TABLE booking (
    start_date  DATE NOT NULL,
    end_date DATE NOT NULL,
    booking_name VARCHAR(50) NULL,
+   email VARCHAR(200) NULL,
+   address VARCHAR(200) NULL,
+   num_of_people INT
 );
 
 CREATE TABLE feedback (

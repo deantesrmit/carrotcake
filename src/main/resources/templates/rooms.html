@@ -41,7 +41,7 @@
         </div>
         <!-- "Find a room" form container -->
         <div class="divInline">
-            <form name="bookForm" method="post" th:action="@{/searchRooms}" th:object="${searchRoomDto}">
+            <form name="bookForm" method="post" th:action="@{/searchRooms}" th:object="${searchDto}">
 
                 <div>
                     <form>
@@ -57,20 +57,12 @@
                             </div>
                         </div>
                         <div>
-                            Adults:<br>
-                            <input type="number" name="viewAdults" min="0">
-                        </div>
-                        <div>
-                            Children:<br>
-                            <input type="number" name="viewChildren" min="0">
-                        </div>
-                        <div>
-                            Beds:<br>
-                            <input type="number" name="viewBeds" min="0">
+                            Num of people:<br>
+                            <input type="number" th:field="*{numOfBeds}" title="adults" min="1" max="4" value="1">
                         </div>
                         <div>
                             Room Type:<br>
-                            <select name="viewType">
+                            <select name="viewType" th:field="*{roomType}">
                                 <option value="gold">Gold</option>
                                 <option value="platinum">Platinum</option>
                                 <option value="diamond">Diamond</option>

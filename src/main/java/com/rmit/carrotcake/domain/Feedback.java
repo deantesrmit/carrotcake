@@ -1,16 +1,16 @@
 package com.rmit.carrotcake.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Feedback {
-        @Id
-        @GeneratedValue
-        private Long id;
-        private Integer stars;
-        private String text;
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private Long id;
+    private String text;
+    @OneToOne
+    @JoinColumn(name = "booking_id")
+    private Booking booking;
 
     public Long getId() {
         return id;
@@ -20,19 +20,19 @@ public class Feedback {
         this.id = id;
     }
 
-    public Integer getStars() {
-        return stars;
-    }
-
-    public void setStars(Integer stars) {
-        this.stars = stars;
-    }
-
     public String getText() {
         return text;
     }
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public Booking getBooking() {
+        return booking;
+    }
+
+    public void setBooking(Booking booking) {
+        this.booking = booking;
     }
 }

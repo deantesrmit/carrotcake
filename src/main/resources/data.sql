@@ -8,4 +8,4 @@ insert into room
 values(10004,'Room4', 'californium', 4, 1);
 
 insert into booking
-values(1, 10004, '2018-06-01', '2018-06-05', 'Deans family');
+values(1, 10004, '2018-06-01', '2018-06-05', 'Deans family', 'test@test.com', '123 fake street', 3);
