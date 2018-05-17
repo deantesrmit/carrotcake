@@ -1,13 +1,11 @@
 <div th:fragment="header">
     <nav>
         <ul>
-            <a href="/"><img id="logo" src="images/gb.png"></a>
+            <a href="/"><img id="logo" th:src="@{/images/gb.png}"></a>
             <!-- Nav bar and list options / links -->
             <li><a href="/rooms">Search for a room</a></li>
             <!--<li><a href="/booking">Make a booking</a></li>-->
             <li><a href="/bookings">My bookings</a></li>
-            <li><a href="#">About</a></li>
         </ul>
-
     </nav>
 </div>

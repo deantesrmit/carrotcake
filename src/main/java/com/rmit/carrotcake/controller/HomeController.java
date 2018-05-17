@@ -24,14 +24,16 @@ public class HomeController {
 
     @GetMapping("/rooms")
     public String room(Model model) {
-        model.addAttribute("searchDto", new SearchDto());
+        SearchDto searchDto = new SearchDto();
+        searchDto.setNumOfPeople(1);
+        model.addAttribute("searchDto", searchDto);
         return "rooms";
     }
 
     @PostMapping("/searchRooms")
     public String searchRoom(Model model, SearchDto searchDto) {
         model.addAttribute("rooms",
-            roomRepository.findByNumRoomsOrRoomType(
+            roomRepository.findByNumRoomsAndRoomType(
                 searchDto.getNumOfPeople(),
                 searchDto.getRoomType())
         );

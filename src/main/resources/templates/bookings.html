@@ -7,8 +7,10 @@
 <body>
     <div layout:fragment="content" class="container">
         <h2>My bookings</h2>
-
-        <table class="table">
+        <div th:if="${bookings.size() == 0}" class="alert alert-info" >
+            You have no bookings currently
+        </div>
+        <table class="table" th:if="${bookings.size() > 0}">
             <thead>
             <tr>
                 <th scope="col">Room #</th>

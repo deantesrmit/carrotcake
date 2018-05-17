@@ -45,36 +45,39 @@
 
             <div class="divInline">
                 <div>
-                    <form name="bookForm" method="post" th:action="@{/booking}" th:object="${booking}">
+                    <form name="bookForm" id="bookForm" method="post" th:action="@{/booking}" th:object="${booking}" data-parsley-validate>
                         <h2 th:text="${message} ?  'Room Booked' : 'Book Room #' + ${roomId}"></h2><br>
                         <div th:if="${message != null}" th:text="${message}" class="alert alert-success" role="alert"></div>
                         <input type="hidden" th:field="*{room.id}">
+                        <div class="bs-callout bs-callout-warning alert alert-warning hidden">
+                            <p>Required fields are missing</p>
+                        </div>
 
                         <div>
                             <div class="divInline">
                                 Please enter requested start date:<br>
-                                <input type="date" id="startDate" name="startDate" th:field="*{startDate}">
+                                <input type="date" id="startDate" name="startDate" th:field="*{startDate}" required="">
                             </div>
                             <div class="divInline">
                                 Please enter requested end date:<br>
-                                <input type="date" id="endDate" name="endDate" align="right" th:field="*{endDate}"><br>
+                                <input type="date" id="endDate" name="endDate" align="right" th:field="*{endDate}" required=""><br>
                             </div>
                         </div>
                         <div>
                             Adults:<br>
-                            <input type="number" th:field="*{numOfPeople}" title="adults" min="0">
+                            <input type="number" th:field="*{numOfPeople}" title="adults" min="0" required="">
                         </div>
                         <div>
                             Name:<br>
-                            <input type="text" th:field="*{bookingName}">
+                            <input type="text" th:field="*{bookingName}" required="">
                         </div>
                         <div>
                             Address:<br>
-                            <input type="text" name="bookAddress" th:field="*{address}">
+                            <input type="text" name="bookAddress" th:field="*{address}" required="">
                         </div>
                         <div>
                             Email:<br>
-                            <input type="text" name="bookEmail" th:field="*{email}">
+                            <input type="text" name="bookEmail" th:field="*{email}" required="">
                         </div>
                         <br>
                         <div>
@@ -88,7 +91,6 @@
 </body>
 
 </html>
-
 <script>
     var slideIndex = 1;
     showSlides(slideIndex);
@@ -122,4 +124,11 @@
 
     document.getElementById('startDate').valueAsDate = new Date();
     document.getElementById('endDate').valueAsDate = new Date();
+
+    $('#bookForm').parsley().on('field:validated', function() {
+        var ok = $('.parsley-error').length === 0;
+        $('.bs-callout-info').toggleClass('hidden', !ok);
+        $('.bs-callout-warning').toggleClass('hidden', ok);
+    })
+
 </script>
